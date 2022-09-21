@@ -65,6 +65,7 @@ function seleccionarMascotaJugador(){
         spanMascotaJugador.innerHTML = "Risk";
     }else{
         alert("Selecciona un Mokepon")
+        reiniciarJuego()
     }
 
     seleccionarMascotaEnemigo()
@@ -134,22 +135,22 @@ function combate(){
     let spanVidasRival = document.getElementById("vidas-rival")
 
     if(ataqueRival == ataqueJugador){
-        crearMensaje(" -EMPATE 🖖")
+        crearMensaje(", EMPATE 🖖")
         
     } else if(ataqueJugador == "FUEGO" && ataqueRival == "HIERBA"){
-       crearMensaje(" -GANASTE!! 🥳")
+       crearMensaje(", GANASTE!! 🥳")
        vidasRival--
        spanVidasRival.innerHTML = vidasRival
     } else if(ataqueJugador == "AGUA" && ataqueRival == "FUEGO"){
-        crearMensaje(" -GANASTE!! 🥳")
+        crearMensaje(", GANASTE!! 🥳")
         vidasRival--
         spanVidasRival.innerHTML = vidasRival
     } else if(ataqueJugador == "HIERBA" && ataqueRival == "AGUA"){
-        crearMensaje(" -GANASTE!! 🥳")
+        crearMensaje(", GANASTE!! 🥳")
         vidasRival--
         spanVidasRival.innerHTML = vidasRival
     } else {
-        crearMensaje(" -PERDISTE 😿")
+        crearMensaje(", PERDISTE 😿")
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
