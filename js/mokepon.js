@@ -34,7 +34,7 @@ function iniciarJuego(){
 function seleccionarMascotaJugador(){
 
     let sectionSeleccionarAtaque = document.querySelector("#seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "block"
+    sectionSeleccionarAtaque.style.display = "flex"
 
     let sectionSeleccionarMascota = document.querySelector("#seleccionar-mascota")
     sectionSeleccionarMascota.style.display = "none"
@@ -46,11 +46,12 @@ function seleccionarMascotaJugador(){
     let inputLui = document.getElementById("lui");
     let inputNasita = document.getElementById("nasita");
     let inputRisk = document.getElementById("risk");
+    let inputVallejo = document.getElementById("vallejo");
     let spanMascotaJugador = document.getElementById("mascota-jugador")
-
-
+    
     if(inputChachis.checked){
         spanMascotaJugador.innerHTML = "Chachis";
+        
     }else if (inputBazzinga.checked){
         spanMascotaJugador.innerHTML = "Bazzinga";
     }else if (inputAldu.checked){
@@ -63,6 +64,8 @@ function seleccionarMascotaJugador(){
         spanMascotaJugador.innerHTML = "Nasita";
     }else if (inputRisk.checked){
         spanMascotaJugador.innerHTML = "Risk";
+    }else if (inputVallejo.checked){
+        spanMascotaJugador.innerHTML = "Vallejo";
     }else{
         alert("Selecciona un Mokepon")
         reiniciarJuego()
@@ -72,7 +75,7 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarMascotaEnemigo(){
-    let mascotaAleatoria = aleatorio(1, 7);
+    let mascotaAleatoria = aleatorio(1, 8);
     let spanMascotaRival = document.getElementById("mascota-rival");
 
     if(mascotaAleatoria == 1){
@@ -87,11 +90,15 @@ function seleccionarMascotaEnemigo(){
         spanMascotaRival.innerHTML = "Lui"
     }else if(mascotaAleatoria == 6){
         spanMascotaRival.innerHTML = "Nasita"
-    }else{
+    }else if(mascotaAleatoria == 7){
         spanMascotaRival.innerHTML = "Risk"
+    }else{
+        spanMascotaRival.innerHTML = "Vallejo"
     }
 
 }
+
+
 
 function ataqueFuego(){
     ataqueJugador = "FUEGO"
@@ -135,22 +142,22 @@ function combate(){
     let spanVidasRival = document.getElementById("vidas-rival")
 
     if(ataqueRival == ataqueJugador){
-        crearMensaje(", EMPATE 🖖")
+        crearMensaje("EMPATE 🖖")
         
     } else if(ataqueJugador == "FUEGO" && ataqueRival == "HIERBA"){
-       crearMensaje(", GANASTE!! 🥳")
+       crearMensaje("GANASTE!! 🥳")
        vidasRival--
        spanVidasRival.innerHTML = vidasRival
     } else if(ataqueJugador == "AGUA" && ataqueRival == "FUEGO"){
-        crearMensaje(", GANASTE!! 🥳")
+        crearMensaje("GANASTE!! 🥳")
         vidasRival--
         spanVidasRival.innerHTML = vidasRival
     } else if(ataqueJugador == "HIERBA" && ataqueRival == "AGUA"){
-        crearMensaje(", GANASTE!! 🥳")
+        crearMensaje("GANASTE!! 🥳")
         vidasRival--
         spanVidasRival.innerHTML = vidasRival
     } else {
-        crearMensaje(", PERDISTE 😿")
+        crearMensaje("PERDISTE 😿")
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
@@ -167,22 +174,28 @@ function revisarVidas(){
 }
 
 function crearMensaje(resultadoCombate){
-    let sectionMensajes = document.getElementById("mensajes")
-    let parrafo = document.createElement("p")
+    let resultado = document.getElementById("resultado")
+    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
+    let ataquesDelRival = document.getElementById("ataques-del-rival")
 
-    parrafo.innerHTML = "Tu mascota atacó con "+ ataqueJugador +", la mascota del enemigo ataco con "+ ataqueRival + resultadoCombate 
-    sectionMensajes.appendChild(parrafo)
+    let nuevoAtaqueDelJugador = document.createElement("p")
+    let nuevoAtaqueDelRival = document.createElement("p")
+    
+    resultado.innerHTML = resultadoCombate
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
+    nuevoAtaqueDelRival.innerHTML = ataqueRival
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelRival.appendChild(nuevoAtaqueDelRival)
 }
 
 function crearMensajeFinal(resultadoFinal){
-    let sectionMensajes = document.getElementById("mensajes")
-    let parrafo = document.createElement("p")
+    let resultado = document.getElementById("resultado")
+
+    resultado.innerHTML = resultadoFinal
+
     let sectionReiniciar = document.querySelector("#reiniciar")
     sectionReiniciar.style.display = "block"
-
-    parrafo.innerHTML = resultadoFinal
-
-    sectionMensajes.appendChild(parrafo)
 
     let botonFuego = document.querySelector("#boton-fuego");
     botonFuego.disabled = true

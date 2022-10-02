@@ -1,8 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nabla&family=Poppins&display=swap');
+
+body{
+    font-family: 'Fredoka One', cursive;
+    background-color: #1B1717;
+}
+
+
 .tittle {
-    color: rgb(43, 144, 226);
+    
     width: 300px;
     height: 50px;
-    background-color: teal;
+    font-family: 'Nabla', cursive;
+    font-size: 80px;
+    
+    
+}
+
+.subtittle{
+    color: #EEEBDD;
+
 }
 
 #seleccionar-mascota{
@@ -13,26 +29,133 @@
 }
 
 .tarjeta-de-mokepon{
-    width: 100px;
+    width: 150px;
     height: 100px;
-    background: lightcoral;
+    color: #EEEBDD;
+    background: #810000;
     padding: 10px;
-    margin: 10px;
-    border: 1px solid blueviolet;
+    margin: 8px;
+    border: 3px solid #EEEBDD;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;   
+}
+
+.tarjeta-de-mokepon:hover{
+    background: #CE1212;
+}
+
+.tarjeta-de-mokepon img{
+    width: 80px;
 }
 
 input{
     display: none;
 }
 
+input:checked + .tarjeta-de-mokepon{
+    background: #CE1212;
+}
+
 #boton-mascota{
     width: 150px;
     height: 50px;
     padding: 4px;
-    margin: 10px;
-    color: azure;
-    background: #0297fa;
-    border: 4px solid blue;
+    margin-top: 20px;
+    color: #EEEBDD;
+    background: #CE1212;
+    border: 4px solid #EEEBDD;
     border-radius: 32px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+#seleccionar-ataque{
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.boton-de-ataque{
+    width: 150px;
+    height: 50px;
+    padding: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #EEEBDD;
+    background: #CE1212;
+    border: 4px solid #EEEBDD;
+    border-radius: 32px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#mensajes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px; 
+    background: #EEEBDD;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+#boton-reiniciar{
+    width: 120px;
+    height: 40px;
+    padding: 4px;
+    margin-top: 10px;
+    color: #EEEBDD;
+    background: #1B1717;
+    border-radius: 32px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.attacks{
+    width: 210px;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    margin-top: 16px;
+    padding: 8px;
+    border-radius: 16px;
+    background: #EEEBDD;
+}
+
+.attacks p {
+    text-align: center;
+}
+
+#vidas-jugador {
+    font-size: 36px;
+}
+
+#mascota-jugador {
+    font-size: 24px;
+}
+
+#vidas-rival {
+    font-size: 36px;
+}
+
+#mascota-rival {
+    font-size: 24px;
+}
+
+
+@media (max-width: 360px) {
+    
 }
