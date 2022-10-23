@@ -1,54 +1,53 @@
-let botonMascota = document.querySelector("#boton-mascota");
-botonMascota.addEventListener("click", seleccionarMascotaJugador)
+const sectionSeleccionarAtaque = document.querySelector("#seleccionar-ataque")
+const sectionReiniciar = document.querySelector("#reiniciar")
+const botonMascota = document.querySelector("#boton-mascota")
+const botonFuego = document.querySelector("#boton-fuego")
+const botonAgua = document.querySelector("#boton-agua")
+const botonHierba = document.querySelector("#boton-hierba")
+const botonReiniciar = document.querySelector("#boton-reiniciar")
 
-let botonFuego = document.querySelector("#boton-fuego");
-botonFuego.addEventListener("click", ataqueFuego)
+const sectionSeleccionarMascota = document.querySelector("#seleccionar-mascota")
+const inputChachis = document.getElementById("chachis");
+const inputBazzinga = document.getElementById("bazzinga");
+const inputAldu = document.getElementById("aldu");
+const inputAlpiste = document.getElementById("alpiste");
+const inputLui = document.getElementById("lui");
+const inputNasita = document.getElementById("nasita");
+const inputRisk = document.getElementById("risk");
+const inputVallejo = document.getElementById("vallejo");
+const spanMascotaJugador = document.getElementById("mascota-jugador")
 
-let botonAgua = document.querySelector("#boton-agua");
-botonAgua.addEventListener("click", ataqueAgua);
+const spanMascotaRival = document.getElementById("mascota-rival");
 
-let botonHierba = document.querySelector("#boton-hierba");
-botonHierba.addEventListener("click", ataqueHierba);
+const spanVidasJugador = document.getElementById("vidas-jugador")
+const spanVidasRival = document.getElementById("vidas-rival")
 
-let botonReiniciar = document.querySelector("#boton-reiniciar");
-botonReiniciar.addEventListener("click", reiniciarJuego);
+const resultado = document.getElementById("resultado")
+const ataquesDelJugador = document.getElementById("ataques-del-jugador")
+const ataquesDelRival = document.getElementById("ataques-del-rival")
+
 let ataqueJugador 
-
 let ataqueRival
 let vidasJugador = 3
 let vidasRival = 3
 
 iniciarJuego()
 
-function iniciarJuego(){
-
-    let sectionSeleccionarAtaque = document.querySelector("#seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "none"
-
-    let sectionReiniciar = document.querySelector("#reiniciar")
+function iniciarJuego(){  
+    sectionSeleccionarAtaque.style.display = "none"   
     sectionReiniciar.style.display = "none"
-
-
+    botonMascota.addEventListener("click", seleccionarMascotaJugador)
+    botonFuego.addEventListener("click", ataqueFuego)
+    botonAgua.addEventListener("click", ataqueAgua);
+    botonHierba.addEventListener("click", ataqueHierba);
+    botonReiniciar.addEventListener("click", reiniciarJuego);
+    
 }
 
 function seleccionarMascotaJugador(){
-
-    let sectionSeleccionarAtaque = document.querySelector("#seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "flex"
-
-    let sectionSeleccionarMascota = document.querySelector("#seleccionar-mascota")
+    sectionSeleccionarAtaque.style.display = "flex"    
     sectionSeleccionarMascota.style.display = "none"
 
-    let inputChachis = document.getElementById("chachis");
-    let inputBazzinga = document.getElementById("bazzinga");
-    let inputAldu = document.getElementById("aldu");
-    let inputAlpiste = document.getElementById("alpiste");
-    let inputLui = document.getElementById("lui");
-    let inputNasita = document.getElementById("nasita");
-    let inputRisk = document.getElementById("risk");
-    let inputVallejo = document.getElementById("vallejo");
-    let spanMascotaJugador = document.getElementById("mascota-jugador")
-    
     if(inputChachis.checked){
         spanMascotaJugador.innerHTML = "Chachis";
         
@@ -76,7 +75,7 @@ function seleccionarMascotaJugador(){
 
 function seleccionarMascotaEnemigo(){
     let mascotaAleatoria = aleatorio(1, 8);
-    let spanMascotaRival = document.getElementById("mascota-rival");
+    
 
     if(mascotaAleatoria == 1){
         spanMascotaRival.innerHTML = "Chachis"
@@ -138,8 +137,7 @@ function ataqueEnemigo(){
 }
 
 function combate(){
-    let spanVidasJugador = document.getElementById("vidas-jugador")
-    let spanVidasRival = document.getElementById("vidas-rival")
+    
 
     if(ataqueRival == ataqueJugador){
         crearMensaje("EMPATE 🖖")
@@ -174,9 +172,7 @@ function revisarVidas(){
 }
 
 function crearMensaje(resultadoCombate){
-    let resultado = document.getElementById("resultado")
-    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
-    let ataquesDelRival = document.getElementById("ataques-del-rival")
+    
 
     let nuevoAtaqueDelJugador = document.createElement("p")
     let nuevoAtaqueDelRival = document.createElement("p")
@@ -192,18 +188,11 @@ function crearMensaje(resultadoCombate){
 function crearMensajeFinal(resultadoFinal){
     let resultado = document.getElementById("resultado")
 
-    resultado.innerHTML = resultadoFinal
-
-    let sectionReiniciar = document.querySelector("#reiniciar")
+    resultado.innerHTML = resultadoFinal    
     sectionReiniciar.style.display = "block"
-
-    let botonFuego = document.querySelector("#boton-fuego");
-    botonFuego.disabled = true
-
-    let botonAgua = document.querySelector("#boton-agua");
-    botonAgua.disabled = true
-
-    let botonHierba = document.querySelector("#boton-hierba");
+    
+    botonFuego.disabled = true    
+    botonAgua.disabled = true    
     botonHierba.disabled = true
 }
 
