@@ -22,6 +22,7 @@ const contenedorBotones = document.getElementById("contenedor-botones")
 let mokepones =[]
 let ataqueJugador 
 let ataqueRival =[]
+let ataqueAleatorio
 let opcionDeMokepones
 let inputChachis 
 let inputBazzinga 
@@ -39,6 +40,10 @@ let botonHierba
 let botones = []
 let ataquePlayer =[]
 let ataquesMokeponRival = []
+let indexAtaqueJugador
+let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasRival = 0
 let vidasJugador = 3
 let vidasRival = 3
 
@@ -71,74 +76,73 @@ let vallejo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5)
 
 
 chachis.ataques.push(
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "💧", id: "boton-agua"}
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
 )
 
 bazzinga.ataques.push(
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "💧", id: "boton-agua"}
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
 )
 
 aldu.ataques.push(
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "💧", id: "boton-agua"}
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
 )
 
 alpiste.ataques.push(
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "🔥", id: "boton-fuego"}
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
 
 )
 
 lui.ataques.push(
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "💧", id: "boton-agua"}, 
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "🔥", id: "boton-fuego"}
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
 
 )
 
 nasita.ataques.push(
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "💧", id: "boton-agua"}
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
 )
 
 risk.ataques.push(
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "💧", id: "boton-agua"}
-
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 )
 
 vallejo.ataques.push(
-    {nombre: "🍃", id: "boton-hierba"}, 
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🍃", id: "boton-hierba"},
-    {nombre: "🔥", id: "boton-fuego"}, 
-    {nombre: "💧", id: "boton-agua"}
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
 )
 
@@ -198,8 +202,8 @@ function seleccionarMascotaJugador(){
         spanMascotaJugador.innerHTML = inputLui.id
         mascotaJugador = inputLui.id
     }else if (inputNasita.checked){
-        spanMascotaJugador.innerHTML = inputNasita,id
-        mascotaJugador = inputNasita,id
+        spanMascotaJugador.innerHTML = inputNasita.id
+        mascotaJugador = inputNasita.id
     }else if (inputRisk.checked){
         spanMascotaJugador.innerHTML = inputRisk.id
         mascotaJugador = inputRisk.id
@@ -250,14 +254,17 @@ function secuenciaAtaque(){
                 ataquePlayer.push("FUEGO")
                 console.log(ataquePlayer)
                 boton.style.background = "#810000"
+                boton.disabled = true  
             } else if (e.target.textContent === "💧"){
                 ataquePlayer.push("AGUA")
                 console.log(ataquePlayer)
                 boton.style.background = "#810000"
+                boton.disabled = true  
             } else {
                 ataquePlayer.push("HIERBA")
                 console.log(ataquePlayer)
                 boton.style.background = "#810000"
+                boton.disabled = true  
             }
             ataqueEnemigo()
         })
@@ -276,54 +283,73 @@ function seleccionarMascotaEnemigo(){
 
 
 function ataqueEnemigo(){
-    let ataqueAleatorio = aleatorio(0, ataquesMokeponRival.length -1);
+    ataqueAleatorio = aleatorio(0, ataquesMokeponRival.length -1);
 
-    if(ataqueAleatorio == 0 || ataqueAleatorio == 1 ){
-        ataqueRival.push("FUEGO")
-        
-    }else if(ataqueAleatorio == 3 || ataqueAleatorio == 4){
-        ataqueRival.push("AGUA")
-        
+    
+
+    if(!ataqueRival.includes(ataquesMokeponRival[ataqueAleatorio])){
+        ataqueRival.push(ataquesMokeponRival[ataqueAleatorio].ataque)
+        console.log(ataqueRival)
     }else{
-        ataqueRival.push("HIERBA")
-        
+        ataqueEnemigo()
     }
-    console.log(ataqueRival)
-    combate()
+    iniciarPelea()
+   
+}
+
+
+
+function iniciarPelea(){
+    if (ataquePlayer.length === 5) {
+        combate()
+    }
+}
+
+function indexAmbosOponente(jugador, enemigo){
+    indexAtaqueJugador = ataquePlayer[jugador]
+    indexAtaqueEnemigo = ataqueRival[enemigo]
 }
 
 function combate(){
     
-
-    if(ataqueRival == ataqueJugador){
-        crearMensaje("EMPATE 🖖")
+    for (let i = 0; i < ataquePlayer.length; i++) {
+        if(ataquePlayer[i] === ataqueRival[i]){
+            indexAmbosOponente(i, i)
+            crearMensaje("EMPATE 🖖")
+        }else if (ataquePlayer[i] === "FUEGO" && ataqueRival[i] ==="HIERBA"){
+            indexAmbosOponente(i, i)
+            crearMensaje("GANASTE 🤩")
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }else if (ataquePlayer[i] === "AGUA" && ataqueRival[i] ==="FUEGO"){
+            indexAmbosOponente(i, i)
+            crearMensaje("GANASTE 🤩")
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }else if (ataquePlayer[i] === "HIERBA" && ataqueRival[i] ==="AGUA"){
+            indexAmbosOponente(i, i)
+            crearMensaje("GANASTE 🤩")
+            victoriasJugador ++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }else {
+            indexAmbosOponente(i, i)
+            crearMensaje("PERDISTE 😓")
+            victoriasRival ++
+            spanVidasRival.innerHTML = victoriasRival
+        }
         
-    } else if(ataqueJugador == "FUEGO" && ataqueRival == "HIERBA"){
-       crearMensaje("GANASTE!! 🥳")
-       vidasRival--
-       spanVidasRival.innerHTML = vidasRival
-    } else if(ataqueJugador == "AGUA" && ataqueRival == "FUEGO"){
-        crearMensaje("GANASTE!! 🥳")
-        vidasRival--
-        spanVidasRival.innerHTML = vidasRival
-    } else if(ataqueJugador == "HIERBA" && ataqueRival == "AGUA"){
-        crearMensaje("GANASTE!! 🥳")
-        vidasRival--
-        spanVidasRival.innerHTML = vidasRival
-    } else {
-        crearMensaje("PERDISTE 😿")
-        vidasJugador--
-        spanVidasJugador.innerHTML = vidasJugador
     }
 
     revisarVidas()
 }
 
 function revisarVidas(){
-    if(vidasRival == 0){
-        crearMensajeFinal("Ganaste! SIUUUUUUUUUUU")
-    }else if(vidasJugador == 0){
-        crearMensajeFinal("No tienes vidas, EFE")
+    if(victoriasJugador === victoriasRival ){
+        crearMensajeFinal("EMPATE CHICOOSSSSS")
+    }else if(victoriasJugador > victoriasRival){
+        crearMensajeFinal("Ganaste! SIUUUUUUUUUUU")        
+    }else{
+        crearMensajeFinal("Perdiste mi Rey , EFE")
     }
 }
 
@@ -334,8 +360,8 @@ function crearMensaje(resultadoCombate){
     let nuevoAtaqueDelRival = document.createElement("p")
     
     resultado.innerHTML = resultadoCombate
-    nuevoAtaqueDelJugador.innerHTML = ataqueJugador
-    nuevoAtaqueDelRival.innerHTML = ataqueRival
+    nuevoAtaqueDelJugador.innerHTML = indexAtaqueJugador
+    nuevoAtaqueDelRival.innerHTML = indexAtaqueEnemigo
 
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
     ataquesDelRival.appendChild(nuevoAtaqueDelRival)
@@ -346,12 +372,9 @@ function crearMensajeFinal(resultadoFinal){
 
     resultado.innerHTML = resultadoFinal    
     sectionReiniciar.style.display = "block"
-    
-    botonFuego.disabled = true    
-    botonAgua.disabled = true    
-    botonHierba.disabled = true
-}
 
+}
+    
 function reiniciarJuego(){
     location.reload()
 }
@@ -361,5 +384,3 @@ function reiniciarJuego(){
 function aleatorio(min, max){
     return Math.floor(Math.random()*(max-min + 1)+min);
 }
-
-

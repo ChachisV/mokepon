@@ -90,7 +90,7 @@ input:checked + .tarjeta-de-mokepon{
 }
 
 .boton-de-ataque{
-    width: 150px;
+    width: 54px;
     height: 50px;
     padding: 4px;
     margin-top: 10px;
@@ -125,14 +125,19 @@ input:checked + .tarjeta-de-mokepon{
     font-family: 'Poppins', sans-serif;
 }
 
+
+
+
 .attacks{
-    width: 210px;
+    width: 270px;
     display: grid;
     grid-template-columns: 100px 100px;
     margin-top: 16px;
     padding: 8px;
     border-radius: 16px;
     background: #EEEBDD;
+    gap: 24px;
+    justify-content: space-around;
 }
 
 .attacks p {
