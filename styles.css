@@ -160,6 +160,22 @@ input:checked + .tarjeta-de-mokepon{
     font-size: 24px;
 }
 
+#ver-mapa{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#ver-mapa h1{
+    font-family: 'Poppins', sans-serif;
+    
+
+}
+
+#mapa{
+    border: 2px solid white
+}
+
 
 @media (max-width: 360px) {
     
