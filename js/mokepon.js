@@ -1,3 +1,5 @@
+
+
 const sectionSeleccionarAtaque = document.querySelector("#seleccionar-ataque")
 const sectionReiniciar = document.querySelector("#reiniciar")
 const botonMascota = document.querySelector("#boton-mascota")
@@ -21,7 +23,7 @@ const contenedorBotones = document.getElementById("contenedor-botones")
 const sectionVerMapa = document.getElementById("ver-mapa")
 const mapa = document.getElementById("mapa")
 
-
+let jugadorId = null
 let mokepones =[]
 let ataqueAleatorio
 let opcionDeMokepones
@@ -307,6 +309,21 @@ function iniciarJuego(){
     
     botonReiniciar.addEventListener("click", reiniciarJuego);
     
+    unirseAlJuego()
+}
+
+function unirseAlJuego(){
+    fetch("http://localhost:8080/unirse")
+        .then(function(res){
+            
+            if(res.ok){
+                res.text()
+                    .then(function(respuesta){
+                        console.log(respuesta)
+                        jugadorId = respuesta
+                    })
+            }
+        })
 }
 
 function seleccionarMascotaJugador(){
@@ -344,10 +361,25 @@ function seleccionarMascotaJugador(){
         alert("Selecciona un Mokepon")
         reiniciarJuego()
     }
+
+    seleccionarMokepon(mascotaJugador)
+
     extraerAtaques(mascotaJugador)
     sectionVerMapa.style.display = "flex"
     iniciarMapa()
     
+}
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    } )
 }
 
 function extraerAtaques(mascotaJugador){
@@ -528,6 +560,11 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
     )
+
+    mascotaJugadorObjeto.pintarMokepon()
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+
     chachisRival.pintarMokepon()
     bazzingaRival.pintarMokepon()
     alduRival.pintarMokepon()
@@ -536,7 +573,7 @@ function pintarCanvas(){
     nasitaRival.pintarMokepon()
     riskRival.pintarMokepon()
     vallejoRival.pintarMokepon()
-    mascotaJugadorObjeto.pintarMokepon()
+    
 
     if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !==0){
         revisarColision(chachisRival)
@@ -548,6 +585,19 @@ function pintarCanvas(){
         revisarColision(riskRival)
         revisarColision(vallejoRival)
 
+    }
+
+    function enviarPosicion(x,y){
+        fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`,{ 
+        method: "post", 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y
+        })
+    })
     }
 
     
