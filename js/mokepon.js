@@ -53,44 +53,94 @@ let lienzo = mapa.getContext("2d")
 let interval
 let mapaBackground = new Image()
 mapaBackground.src = "../assets/mokemap.png"
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 700
+
+if (anchoDelMapa > anchoMaximoDelMapa){
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
+
 
 
 class Mokepon{
-    constructor(nombre, foto, vida){
+    constructor(nombre, foto, vida,fotoMapa){
         this.nombre = nombre
         this.foto = foto
         this.vida = vida 
         this.ataques = []
-        this.x = 20
-        this.y = 10
-        this.ancho = 80 
-        this.alto = 80
+        this.ancho = 40 
+        this.alto = 40
+        this.x = aleatorio(0, mapa.width - this.ancho)
+        this.y = aleatorio(0, mapa.height - this.alto)
+        
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
+    pintarMokepon(){
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+        )
+    }
+
 }
 
-let chachis = new Mokepon("Chachis", "../assets/chacheleon.png", 5)
+let chachis = new Mokepon("Chachis", "../assets/chacheleon.png", 5, "../assets/chacheleon.png")
 
-let bazzinga = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5)
+let bazzinga = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
 
-let aldu = new Mokepon("Aldu", "../assets/aldupuff.png", 5)
+let aldu = new Mokepon("Aldu", "../assets/aldupuff.png", 5, "../assets/aldupuff.png")
 
-let alpiste = new Mokepon("Alpiste", "../assets/alpisduck.png", 5)
+let alpiste = new Mokepon("Alpiste", "../assets/alpisduck.png", 5, "../assets/alpisduck.png")
 
-let lui = new Mokepon("Lui", "../assets/luiggecutor.png", 5)
+let lui = new Mokepon("Lui", "../assets/luiggecutor.png", 5, "../assets/luiggecutor.png")
 
-let nasita = new Mokepon("Nasita", "../assets/nasichu.png", 5)
+let nasita = new Mokepon("Nasita", "../assets/nasichu.png", 5, "../assets/nasichu.png")
 
-let risk = new Mokepon("Risk", "../assets/risknemite.png", 5)
+let risk = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknemite.png")
 
-let vallejo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5)
+let vallejo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
+
+let chachisRival = new Mokepon("Chachis", "../assets/chacheleon.png", 5, "../assets/chacheleon.png")
+
+let bazzingaRival = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
+
+let alduRival = new Mokepon("Aldu", "../assets/aldupuff.png", 5, "../assets/aldupuff.png")
+
+let alpisteRival = new Mokepon("Alpiste", "../assets/alpisduck.png", 5, "../assets/alpisduck.png")
+
+let luiRival = new Mokepon("Lui", "../assets/luiggecutor.png", 5, "../assets/luiggecutor.png" )
+
+let nasitaRival = new Mokepon("Nasita", "../assets/nasichu.png", 5, "../assets/nasichu.png")
+
+let riskRival = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknemite.png")
+
+let vallejoRival = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
 
 
 
 chachis.ataques.push(
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+
+)
+
+chachisRival.ataques.push(
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
@@ -108,7 +158,25 @@ bazzinga.ataques.push(
 
 )
 
+bazzingaRival.ataques.push(
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+
+)
+
 aldu.ataques.push(
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+
+)
+
+alduRival.ataques.push(
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
@@ -126,7 +194,25 @@ alpiste.ataques.push(
 
 )
 
+alpisteRival.ataques.push(
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+
+)
+
 lui.ataques.push(
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+
+)
+
+luiRival.ataques.push(
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
@@ -144,6 +230,15 @@ nasita.ataques.push(
 
 )
 
+nasitaRival.ataques.push(
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+
+)
+
 risk.ataques.push(
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
@@ -152,7 +247,24 @@ risk.ataques.push(
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 )
 
+riskRival.ataques.push(
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+)
+
 vallejo.ataques.push(
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
+    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
+    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+
+)
+
+vallejoRival.ataques.push(
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
@@ -198,7 +310,7 @@ function iniciarJuego(){
 }
 
 function seleccionarMascotaJugador(){
-    // sectionSeleccionarAtaque.style.display = "flex"    
+ 
     sectionSeleccionarMascota.style.display = "none"
     
     
@@ -235,7 +347,7 @@ function seleccionarMascotaJugador(){
     extraerAtaques(mascotaJugador)
     sectionVerMapa.style.display = "flex"
     iniciarMapa()
-    seleccionarMascotaEnemigo()
+    
 }
 
 function extraerAtaques(mascotaJugador){
@@ -292,11 +404,9 @@ function secuenciaAtaque(){
     
 }
 
-function seleccionarMascotaEnemigo(){
-    let mascotaAleatoria = aleatorio(0, mokepones.length - 1);    
-
-    spanMascotaRival.innerHTML = mokepones[mascotaAleatoria].nombre
-    ataquesMokeponRival = mokepones[mascotaAleatoria].ataques
+function seleccionarMascotaEnemigo(rival){
+    spanMascotaRival.innerHTML = rival.nombre
+    ataquesMokeponRival = rival.ataques
     secuenciaAtaque()
     
 }
@@ -307,11 +417,12 @@ function ataqueEnemigo(){
 
     
 
-    if(!ataqueRival.includes(ataquesMokeponRival[ataqueAleatorio])){
-        ataqueRival.push(ataquesMokeponRival[ataqueAleatorio].ataque)
-        console.log(ataqueRival)
-    }else{
-        ataqueEnemigo()
+    if(ataqueAleatorio == 0 || ataqueAleatorio == 1){
+        ataqueRival.push("FUEGO")
+    }else if(ataqueAleatorio == 2 || ataqueAleatorio == 4) {
+        ataqueRival.push("AGUA")
+    }else {        
+        ataqueRival.push("HIERBA")
     }
     iniciarPelea()
    
@@ -417,13 +528,29 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
     )
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto
-    )
+    chachisRival.pintarMokepon()
+    bazzingaRival.pintarMokepon()
+    alduRival.pintarMokepon()
+    alpisteRival.pintarMokepon()
+    luiRival.pintarMokepon()
+    nasitaRival.pintarMokepon()
+    riskRival.pintarMokepon()
+    vallejoRival.pintarMokepon()
+    mascotaJugadorObjeto.pintarMokepon()
+
+    if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !==0){
+        revisarColision(chachisRival)
+        revisarColision(bazzingaRival)
+        revisarColision(alduRival)
+        revisarColision(alpisteRival)
+        revisarColision(luiRival)
+        revisarColision(nasitaRival)
+        revisarColision(riskRival)
+        revisarColision(vallejoRival)
+
+    }
+
+    
 }
 
 function moverDerecha(){    
@@ -472,8 +599,6 @@ function sePresionoUnaTecla(event){
 }
 
 function iniciarMapa(){
-    mapa.width = 320
-    mapa.height =240
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador)
     interval = setInterval(pintarCanvas, 50)
 
@@ -488,4 +613,35 @@ function obtenerObjetoMascota(){
         }
         
     }
+}
+
+function revisarColision(rival){
+    const arribaRival = rival.y + 15
+    const abajoRival = rival.y + rival.alto - 15
+    const derechaRival = rival.x + rival.ancho  -15
+    const izquierdaRival = rival.x + 15
+
+    const arribaMascota = 
+        mascotaJugadorObjeto.y + 15
+    const abajoMascota = 
+        mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto -15
+    const derechaMascota = 
+        mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho -15
+    const izquierdaMascota = 
+        mascotaJugadorObjeto.x + 15
+
+    if(
+        abajoMascota < arribaRival || 
+        arribaMascota > abajoRival ||
+        derechaMascota < izquierdaRival ||
+        izquierdaMascota > derechaRival
+    ){
+        return
+    }
+    detenerMovimiento()
+    clearInterval(interval)
+    sectionSeleccionarAtaque.style.display = "flex"   
+    sectionVerMapa.style.display = "none"
+    seleccionarMascotaEnemigo(rival)
+    // alert(rival.nombre + " salvaje aparece")
 }

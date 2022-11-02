@@ -166,14 +166,24 @@ input:checked + .tarjeta-de-mokepon{
     justify-content: center;
 }
 
-#ver-mapa h1{
+#ver-mapa h2{
     font-family: 'Poppins', sans-serif;
+    color: #EEEBDD;
     
 
 }
 
-#mapa{
-    border: 2px solid white
+#ver-mapa button{
+    width: 80px;
+    height: 50px;
+    padding: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #EEEBDD;
+    background: #CE1212;
+    border: 4px solid #EEEBDD;
+    border-radius: 32px;
+    font-family: 'Poppins', sans-serif;
 }
 
 
