@@ -72,7 +72,8 @@ mapa.height = alturaQueBuscamos
 
 
 class Mokepon{
-    constructor(nombre, foto, vida,fotoMapa){
+    constructor(nombre, foto, vida,fotoMapa, id = null){
+        this.id = id
         this.nombre = nombre
         this.foto = foto
         this.vida = vida 
@@ -115,165 +116,50 @@ let risk = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknem
 
 let vallejo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
 
-let chachisRival = new Mokepon("Chachis", "../assets/chacheleon.png", 5, "../assets/chacheleon.png")
-
-let bazzingaRival = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
-
-let alduRival = new Mokepon("Aldu", "../assets/aldupuff.png", 5, "../assets/aldupuff.png")
-
-let alpisteRival = new Mokepon("Alpiste", "../assets/alpisduck.png", 5, "../assets/alpisduck.png")
-
-let luiRival = new Mokepon("Lui", "../assets/luiggecutor.png", 5, "../assets/luiggecutor.png" )
-
-let nasitaRival = new Mokepon("Nasita", "../assets/nasichu.png", 5, "../assets/nasichu.png")
-
-let riskRival = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknemite.png")
-
-let vallejoRival = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
 
 
 
-chachis.ataques.push(
+
+const fuegoAtaques = [
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
 
-)
+]
 
-chachisRival.ataques.push(
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-bazzinga.ataques.push(
+const hierbaAtaques = [
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
+]
 
-)
-
-bazzingaRival.ataques.push(
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-aldu.ataques.push(
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-alduRival.ataques.push(
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-alpiste.ataques.push(
+const aguaAtaques = [
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
     {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
     {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
     {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+]
 
-)
+chachis.ataques.push(...fuegoAtaques)
 
-alpisteRival.ataques.push(
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+bazzinga.ataques.push(...hierbaAtaques)
 
-)
+aldu.ataques.push(...hierbaAtaques)
 
-lui.ataques.push(
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+alpiste.ataques.push(...aguaAtaques)
 
-)
+lui.ataques.push(...aguaAtaques)
 
-luiRival.ataques.push(
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}
+nasita.ataques.push(...fuegoAtaques)
 
-)
+risk.ataques.push(...fuegoAtaques)
 
-nasita.ataques.push(
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-nasitaRival.ataques.push(
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-risk.ataques.push(
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-)
-
-riskRival.ataques.push(
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-)
-
-vallejo.ataques.push(
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
-
-vallejoRival.ataques.push(
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🍃", id: "boton-hierba", ataque: "HIERBA"}, 
-    {nombre: "🔥", id: "boton-fuego", ataque: "FUEGO"},
-    {nombre: "💧", id: "boton-agua", ataque: "AGUA"}
-
-)
+vallejo.ataques.push(...hierbaAtaques)
 
 
 mokepones.push(chachis, bazzinga, aldu, alpiste, lui, nasita, risk, vallejo)
@@ -598,28 +484,64 @@ function pintarCanvas(){
             y
         })
     })
+        .then(function(res){
+            if (res.ok){
+                res.json()
+                .then(function({enemigos}){
+                    console.log(enemigos)
+                    
+                    enemigos.forEach(function(enemigo){
+                        let mokeponEnemigo = null
+                        const mokeponNombre = enemigo.mokepon.nombre || ""
+                        if (mokeponNombre === "Chachis" ){
+                            mokeponEnemigo = new Mokepon("Chachis", "../assets/chacheleon.png", 5, "../assets/chacheleon.png")
+                        }else if(mokeponNombre === "Bazzinga"){
+                            mokeponEnemigo = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
+                        }else if ( mokeponNombre === "Aldu"){
+                            mokeponEnemigo = new Mokepon("Aldu", "../assets/aldupuff.png", 5, "../assets/aldupuff.png")
+                        }else if ( mokeponNombre === "Alpiste"){
+                            mokeponEnemigo = new Mokepon("Alpiste", "../assets/alpisduck.png", 5, "../assets/alpisduck.png")
+                        }else if(mokeponNombre === "Lui"){
+                            mokeponEnemigo = new Mokepon("Lui", "../assets/luiggecutor.png", 5, "../assets/luiggecutor.png" )
+                        }else if ( mokeponNombre === "Nasita"){
+                            mokeponEnemigo = new Mokepon("Nasita", "../assets/nasichu.png", 5, "../assets/nasichu.png")
+                        }else if ( mokeponNombre === "Risk"){
+                            mokeponEnemigo = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknemite.png")
+                        }else if (mokeponNombre === "Vallejo") {
+                            mokeponEnemigo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
+                        }
+
+                        mokeponEnemigo.x = enemigo.x
+                        mokeponEnemigo.y = enemigo.y
+
+                        mokeponEnemigo.pintarMokepon()
+                    })              
+                  
+                })
+            }
+        })
     }
 
     
 }
 
 function moverDerecha(){    
-    mascotaJugadorObjeto.velocidadX = chachis.velocidadX + 5
+    mascotaJugadorObjeto.velocidadX =  5
     
 }
 
 function moverIzquierda(){    
-    mascotaJugadorObjeto.velocidadX = chachis.velocidadX - 5
+    mascotaJugadorObjeto.velocidadX =  - 5
     
 }
 
 function moverAbajo(){    
-    mascotaJugadorObjeto.velocidadY = chachis.velocidadY + 5
+    mascotaJugadorObjeto.velocidadY =  + 5
     
 }
 
 function moverArriba(){    
-    mascotaJugadorObjeto.velocidadY = chachis.velocidadY - 5
+    mascotaJugadorObjeto.velocidadY =  - 5
     
 }
 
