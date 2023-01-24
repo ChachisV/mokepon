@@ -451,14 +451,7 @@ function pintarCanvas(){
 
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
 
-    chachisRival.pintarMokepon()
-    bazzingaRival.pintarMokepon()
-    alduRival.pintarMokepon()
-    alpisteRival.pintarMokepon()
-    luiRival.pintarMokepon()
-    nasitaRival.pintarMokepon()
-    riskRival.pintarMokepon()
-    vallejoRival.pintarMokepon()
+    mokeponesEnemigos.forEach(function(mokepon){mokepon.pintarMokepon()})
     
 
     if(mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !==0){
