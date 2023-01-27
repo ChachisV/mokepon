@@ -102,21 +102,21 @@ class Mokepon{
 
 }
 
-let chachis = new Mokepon("Chachis", "../assets/chacheleon.png", 5, "../assets/chacheleon.png")
+let chachis = new Mokepon("Chachis", "./assets/chacheleon.png", 5, "../assets/chacheleon.png")
 
-let bazzinga = new Mokepon("Bazzinga", "../assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
+let bazzinga = new Mokepon("Bazzinga", "./assets/bazzinorlax.png", 5, "../assets/bazzinorlax.png")
 
-let aldu = new Mokepon("Aldu", "../assets/aldupuff.png", 5, "../assets/aldupuff.png")
+let aldu = new Mokepon("Aldu", "./assets/aldupuff.png", 5, "../assets/aldupuff.png")
 
-let alpiste = new Mokepon("Alpiste", "../assets/alpisduck.png", 5, "../assets/alpisduck.png")
+let alpiste = new Mokepon("Alpiste", "./assets/alpisduck.png", 5, "../assets/alpisduck.png")
 
-let lui = new Mokepon("Lui", "../assets/luiggecutor.png", 5, "../assets/luiggecutor.png")
+let lui = new Mokepon("Lui", "./assets/luiggecutor.png", 5, "../assets/luiggecutor.png")
 
-let nasita = new Mokepon("Nasita", "../assets/nasichu.png", 5, "../assets/nasichu.png")
+let nasita = new Mokepon("Nasita", "./assets/nasichu.png", 5, "../assets/nasichu.png")
 
-let risk = new Mokepon("Risk", "../assets/risknemite.png", 5, "../assets/risknemite.png")
+let risk = new Mokepon("Risk", "./assets/risknemite.png", 5, "../assets/risknemite.png")
 
-let vallejo = new Mokepon("Vallejo", "../assets/goldllejo.png", 5, "../assets/goldllejo.png")
+let vallejo = new Mokepon("Vallejo", "./assets/goldllejo.png", 5, "../assets/goldllejo.png")
 
 
 
@@ -201,7 +201,7 @@ function iniciarJuego(){
 }
 
 function unirseAlJuego(){
-    fetch("http://localhost:8080/unirse")
+    fetch("http://192.168.20.23:8080/unirse")
         .then(function(res){
             
             if(res.ok){
@@ -259,7 +259,7 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarMokepon(mascotaJugador){
-    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+    fetch(`http://192.168.20.23:8080/mokepon/${jugadorId}`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -329,7 +329,7 @@ function secuenciaAtaque(){
 
 
 function enviarAtaques(){
-    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`, {
+    fetch(`http://192.168.20.23:8080/mokepon/${jugadorId}/ataques`, {
         method: "post", 
         headers: {
             "Content-Type": "application/json"
@@ -343,7 +343,7 @@ function enviarAtaques(){
 }
 
 function obtenerAtaques(){
-    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+    fetch(`http://192.168.20.23:8080/mokepon/${enemigoId}/ataques`)
     .then(function(res){
         if(res.ok){
             res.json()
@@ -493,7 +493,7 @@ function pintarCanvas(){
     })
     
     function enviarPosicion(x,y){
-        fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`,{ 
+        fetch(`http://192.168.20.23:8080/mokepon/${jugadorId}/posicion`,{ 
         method: "post", 
         headers: {
             "Content-Type": "application/json"
